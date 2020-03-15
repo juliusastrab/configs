@@ -1,0 +1,17 @@
+filebeat.config:
+  modules:
+    path: ${path.config}/modules.d/*.yml
+    reload.enabled: true
+
+setup.kibana:
+ host: "$KIBANA_IP:5601"
+
+filebeat.inputs:
+- type: docker
+  containers:
+    ids:
+    - '$CONTAINER_ID'
+    path: "/var/lib/docker/containers/"
+
+output.elasticsearch:
+  hosts: ["$ELASTICSEARCH_IP:9200"]

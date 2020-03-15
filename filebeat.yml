@@ -9,14 +9,14 @@ filebeat.autodiscover:
       hints.enabled: true
 
 setup.kibana:
- host: "$KIBANA_IP:5601"
+ host: "${KIBANA_IP}:5601"
 
 filebeat.inputs:
 - type: docker
   containers:
     ids:
-    - '$CONTAINER_ID'
+    - '${CONTAINER_ID}'
     path: "/var/lib/docker/containers/"
 
 output.elasticsearch:
-  hosts: ["$ELASTICSEARCH_IP:9200"]
+  hosts: ["${ELASTICSEARCH_IP}:9200"]
